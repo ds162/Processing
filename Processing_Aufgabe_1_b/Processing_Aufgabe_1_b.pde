@@ -4,7 +4,6 @@ float rotationY = 2.5;
 
 void setup(){
   size(800,800,P3D);
-  //lights();
   frameRate(10);
   background(0);
 }
