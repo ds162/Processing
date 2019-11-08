@@ -2,6 +2,12 @@
 float rotationX = 2.5;
 float rotationY = 2.5;
 
+// timer
+int timer = 40;
+
+// countdown
+boolean counter = true;
+
 void setup(){
   size(800,800,P3D);
   frameRate(10);
@@ -10,7 +16,7 @@ void setup(){
 
 // function for basis picture
 void basis() {
-   for (int i=0; i <= 30; i++) {
+   for (int i=0; i <= 40; i++) {
       
     // set value for rotation around x-axis
     rotationX=rotationX + 2.5;
@@ -19,15 +25,36 @@ void basis() {
     rotateX(rotationX);
      
     // draw triangle
-    triangle(280,500,400,300,520,500);
+    triangle(280,650,400,400,520,650);
     
   }
 
 }
 
+
 void draw() {
   stroke(255);
   noFill();
-  basis();
- 
+  
+  // set counter 
+  if (timer == 0){
+    counter = false;
+    background(0);
+    timer = 40;
+    counter = true;
+  }
+  
+  // countdown draw first branch 
+  else if(timer != 0 && counter == true){
+    timer--;
+    basis();
+   
+   if (keyPressed) {
+    if (key == 's' || key == 'S'){
+     save("Picture.jpg");
+    }
+    }
+   
+  }
+
 }
