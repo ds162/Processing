@@ -13,10 +13,22 @@ int timer = 4;
 // countdown
 boolean counter = true;
 
+// picturenumber
+int picturenumber = 0;
+
 void setup(){
   size(800,800,P3D);
   lights();
   frameRate(3); 
+}
+
+void picture(){
+  if (keyPressed) {
+      if (key == 's' || key == 'S') {
+        save("Picture_" + picturenumber + ".jpg");
+        picturenumber++;
+      }
+    }
 }
 
 // function to draw expanding figures
@@ -30,6 +42,7 @@ void positive(){
     rotationY=rotationY + 2.5;
     rotateX(rotationX);
     rotateY(rotationY);
+
   } 
 }
 
@@ -44,6 +57,7 @@ void negative(){
     rotationY=rotationY - 2.5;
     rotateX(rotationX);
     rotateY(rotationY);
+
   } 
 }
 
@@ -52,25 +66,32 @@ void draw(){
   translate(400, 400, 0); 
   noFill();
   stroke(255);
-  
+
+ 
+
   // set counter 
   if (timer == 0){
     counter = false;
   }
+  
   // countdown, draw expanding figures
   else if(timer != 0 && counter == true){
     timer--;
-    positive();
+    positive(); 
+ 
   }
   
   // countdown, draw decreasing figures
   if (counter == false && timer != 4){
     negative();
     timer++;
+ 
   }
   
   // reset timer
   else if(timer == 4){
     counter = true;
   }
+  picture();
+
   }
